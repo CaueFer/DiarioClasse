@@ -167,6 +167,7 @@
             btnAddProfessor.TabIndex = 2;
             btnAddProfessor.Text = "Professor";
             btnAddProfessor.UseVisualStyleBackColor = false;
+            btnAddProfessor.Click += btnAddProfessor_Click;
             // 
             // panel4
             // 

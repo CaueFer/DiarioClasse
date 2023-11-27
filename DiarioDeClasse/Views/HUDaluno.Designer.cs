@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            NameBtn = new Button();
+            btnAddAluno = new Button();
             txtName = new TextBox();
             listBtn = new Button();
             listAlunos = new ListView();
             listNome = new ColumnHeader();
             listMatricula = new ColumnHeader();
             labelName = new Label();
-            removeBtn = new Button();
+            btnRemoveAluno = new Button();
             resultLabel = new Label();
             responseRemoveLabel = new Label();
             SuspendLayout();
             // 
-            // NameBtn
+            // btnAddAluno
             // 
-            NameBtn.Location = new Point(55, 114);
-            NameBtn.Name = "NameBtn";
-            NameBtn.Size = new Size(70, 29);
-            NameBtn.TabIndex = 0;
-            NameBtn.Text = "Adicionar";
-            NameBtn.UseVisualStyleBackColor = true;
-            NameBtn.Click += button1_Click;
+            btnAddAluno.Location = new Point(55, 114);
+            btnAddAluno.Name = "btnAddAluno";
+            btnAddAluno.Size = new Size(70, 29);
+            btnAddAluno.TabIndex = 0;
+            btnAddAluno.Text = "Adicionar";
+            btnAddAluno.UseVisualStyleBackColor = true;
+            btnAddAluno.Click += button1_Click;
             // 
             // txtName
             // 
@@ -104,15 +104,15 @@
             labelName.TabIndex = 5;
             labelName.Text = "Nome aluno:";
             // 
-            // removeBtn
+            // btnRemoveAluno
             // 
-            removeBtn.Location = new Point(168, 117);
-            removeBtn.Name = "removeBtn";
-            removeBtn.Size = new Size(70, 26);
-            removeBtn.TabIndex = 6;
-            removeBtn.Text = "Remover";
-            removeBtn.UseVisualStyleBackColor = true;
-            removeBtn.Click += removeBtn_Click;
+            btnRemoveAluno.Location = new Point(168, 117);
+            btnRemoveAluno.Name = "btnRemoveAluno";
+            btnRemoveAluno.Size = new Size(70, 26);
+            btnRemoveAluno.TabIndex = 6;
+            btnRemoveAluno.Text = "Remover";
+            btnRemoveAluno.UseVisualStyleBackColor = true;
+            btnRemoveAluno.Click += removeBtn_Click;
             // 
             // resultLabel
             // 
@@ -138,12 +138,12 @@
             ClientSize = new Size(314, 450);
             Controls.Add(responseRemoveLabel);
             Controls.Add(resultLabel);
-            Controls.Add(removeBtn);
+            Controls.Add(btnRemoveAluno);
             Controls.Add(labelName);
             Controls.Add(listBtn);
             Controls.Add(listAlunos);
             Controls.Add(txtName);
-            Controls.Add(NameBtn);
+            Controls.Add(btnAddAluno);
             Name = "HUDaluno";
             Text = "HUD";
             ResumeLayout(false);
@@ -152,14 +152,14 @@
 
         #endregion
 
-        private Button NameBtn;
+        private Button btnAddAluno;
         private TextBox txtName;
         private Button listBtn;
         private ListView listAlunos;
         private ColumnHeader listNome;
         private ColumnHeader listMatricula;
         private Label labelName;
-        private Button removeBtn;
+        private Button btnRemoveAluno;
         public Label resultLabel;
         private Label responseRemoveLabel;
     }

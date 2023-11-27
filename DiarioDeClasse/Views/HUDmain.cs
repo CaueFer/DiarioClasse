@@ -213,5 +213,11 @@ namespace DiarioDeClasse.Views
         {
 
         }
+
+        private void btnAddProfessor_Click(object sender, EventArgs e)
+        {
+            HUDprofessor hudProfessor = new HUDprofessor(_professorService);
+            hudProfessor.ShowDialog();
+        }
     }
 }

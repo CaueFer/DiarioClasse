@@ -53,8 +53,8 @@ namespace DiarioDeClasse
 
             foreach (var aluno in Listalunos)
             {
-                ListViewItem item = new ListViewItem(aluno.Matricula.ToString());
-                item.SubItems.Add(aluno.Nome);
+                ListViewItem item = new ListViewItem(aluno.Nome);
+                item.SubItems.Add(aluno.Matricula.ToString());
 
                 listAlunos.Items.Add(item);
             }

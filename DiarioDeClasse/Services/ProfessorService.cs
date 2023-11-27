@@ -22,5 +22,48 @@ namespace DiarioDeClasse.Services
         {
             return listaProfessores;
         }
+
+
+        public void Adicionar(string nome)
+        {
+
+            ProfessorModel novoProfessor = new ProfessorModel { Nome = nome, Matricula = GeradorMatriculaUnica() };
+
+            listaProfessores.Add(novoProfessor);
+        }
+
+        public bool RemoverUnico(int matricula)
+        {
+
+            ProfessorModel professor = listaProfessores.Find(a => a.Matricula == matricula);
+            if (listaProfessores != null)
+            {
+                listaProfessores.Remove(professor);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+            
+        private int GeradorMatriculaUnica()
+        {
+            Random random = new Random();
+            int maxTentativas = 100;
+
+            for (int tentativa = 1; tentativa <= maxTentativas; tentativa++)
+            {
+                int number = random.Next(0, 9999);
+
+                ProfessorModel professor = listaProfessores.Find(a => a.Matricula == number);
+                if (professor == null)
+                {
+                    return number;
+                }
+            }
+            throw new InvalidOperationException("MAX CAP DE MATRICULA");
+        }
     }
 }
