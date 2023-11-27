@@ -211,7 +211,8 @@ namespace DiarioDeClasse.Views
 
         private void btnAddDisciplina_Click(object sender, EventArgs e)
         {
-
+            HUDdisciplina hudDisciplina = new HUDdisciplina(_disciplinaService, _professorService);
+            hudDisciplina.ShowDialog();
         }
 
         private void btnAddProfessor_Click(object sender, EventArgs e)

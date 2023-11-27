@@ -35,5 +35,25 @@ namespace DiarioDeClasse.Services
         {
             return listaDisciplinas;
         }
+
+        public void Adicionar(string nome, string sigla, DayOfWeek dia, ProfessorModel professor)
+        {
+            DisciplinaModel novaDisciplina = new DisciplinaModel { Nome = nome, Sigla = sigla, Dia = dia, Professor = professor };
+
+            listaDisciplinas.Add(novaDisciplina);
+        }
+
+        public bool RemoveDisciplina(string nome)
+        {
+            DisciplinaModel disciplinaModel = listaDisciplinas.Find(a => a.Nome == nome);
+
+            if(disciplinaModel != null) 
+            {
+                listaDisciplinas.Remove(disciplinaModel);
+
+                return true;
+            } else return false;
+        }
+
     }
 }

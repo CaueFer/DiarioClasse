@@ -378,7 +378,6 @@
             Controls.Add(labelSelectedProfessor);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "HUDmain";
-            Text = "TESTE";
             sideBar.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
