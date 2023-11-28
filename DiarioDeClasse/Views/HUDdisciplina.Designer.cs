@@ -66,7 +66,7 @@
             // 
             // btnRemoveProfessor
             // 
-            btnRemoveProfessor.Location = new Point(38, 188);
+            btnRemoveProfessor.Location = new Point(40, 223);
             btnRemoveProfessor.Name = "btnRemoveProfessor";
             btnRemoveProfessor.Size = new Size(288, 26);
             btnRemoveProfessor.TabIndex = 14;
@@ -133,7 +133,7 @@
             // 
             // btnAddDisciplina
             // 
-            btnAddDisciplina.Location = new Point(39, 220);
+            btnAddDisciplina.Location = new Point(40, 188);
             btnAddDisciplina.Name = "btnAddDisciplina";
             btnAddDisciplina.Size = new Size(287, 29);
             btnAddDisciplina.TabIndex = 9;

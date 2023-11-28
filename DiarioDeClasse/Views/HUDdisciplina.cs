@@ -47,76 +47,77 @@ namespace DiarioDeClasse.Views
             string siglaDisciplina = txtSiglaDisciplina.Text;
             DayOfWeek diaDisciplina = new DayOfWeek();
 
-            List<ProfessorModel> listProfessores = _professorService.ReturnProfessores();
-            ProfessorModel professorDisciplina = listProfessores.Find(a => a.Nome == selectProfessor.SelectedItem.ToString());
-
-
-            string diaSelecionado = selectDisciplinaDia.SelectedItem.ToString();
-            switch (diaSelecionado)
+            if (selectProfessor.SelectedItem != null)
             {
-                case "Segunda":
-                    diaDisciplina = DayOfWeek.Monday;
-                    break;
-
-                case "Terca":
-                    diaDisciplina = DayOfWeek.Tuesday;
-                    break;
-
-                case "Quarta":
-                    diaDisciplina = DayOfWeek.Wednesday;
-                    break;
-
-                case "Quinta":
-                    diaDisciplina = DayOfWeek.Thursday;
-                    break;
-
-                case "Sexta":
-                    diaDisciplina = DayOfWeek.Friday;
-                    break;
-
-                case "Sabado":
-                    diaDisciplina = DayOfWeek.Saturday;
-                    break;
-
-                case "Domingo":
-                    diaDisciplina = DayOfWeek.Sunday;
-                    break;
-            }
-
-            if (!string.IsNullOrEmpty(nomeDisciplina))
-            {
-                if (!string.IsNullOrEmpty(siglaDisciplina))
+                List<ProfessorModel> listProfessores = _professorService.ReturnProfessores();
+                ProfessorModel professorDisciplina = listProfessores.Find(a => a.Nome == selectProfessor.SelectedItem.ToString());
+  
+                if (selectDisciplinaDia.SelectedItem != null)
                 {
-                    if (!string.IsNullOrEmpty(diaSelecionado))
+                    string diaSelecionado = selectDisciplinaDia.SelectedItem.ToString();
+                    switch (diaSelecionado)
                     {
-                        if (professorDisciplina != null)
-                        {
-                            _disciplinaService.Adicionar(nomeDisciplina, siglaDisciplina, diaDisciplina, professorDisciplina);
-                            txtNameDisciplina.Clear();
-                            txtNameDisciplina.Focus();
+                        case "Segunda":
+                            diaDisciplina = DayOfWeek.Monday;
+                            break;
 
-                            resultLabel.Text = ($"Disciplina {nomeDisciplina.ToUpper()} adicionada com sucesso!");
-                        }
-                        else resultLabel.Text = ("Por favor, selecione um professor.");
+                        case "Terca":
+                            diaDisciplina = DayOfWeek.Tuesday;
+                            break;
+
+                        case "Quarta":
+                            diaDisciplina = DayOfWeek.Wednesday;
+                            break;
+
+                        case "Quinta":
+                            diaDisciplina = DayOfWeek.Thursday;
+                            break;
+
+                        case "Sexta":
+                            diaDisciplina = DayOfWeek.Friday;
+                            break;
+
+                        case "Sabado":
+                            diaDisciplina = DayOfWeek.Saturday;
+                            break;
+
+                        case "Domingo":
+                            diaDisciplina = DayOfWeek.Sunday;
+                            break;
                     }
-                    else resultLabel.Text = ("Por favor, selecione um dia.");
+
+                    if (!string.IsNullOrEmpty(nomeDisciplina))
+                    {
+                        if (!string.IsNullOrEmpty(siglaDisciplina))
+                        {
+                                _disciplinaService.Adicionar(nomeDisciplina, siglaDisciplina, diaDisciplina, professorDisciplina);
+                                txtNameDisciplina.Clear();
+                                txtNameDisciplina.Focus();
+
+                                resultLabel.Text = ($"Disciplina {nomeDisciplina.ToUpper()} adicionada com sucesso!");  
+                        }
+                        else resultLabel.Text = ("Por favor, insira a sigla da disciplina.");
+                    }
+                    else resultLabel.Text = ("Por favor, insira o nome da disciplina.");
+
+
+                    listviewDisciplinas.Items.Clear();
+                    List<DisciplinaModel> Listdisciplinas = _disciplinaService.ReturnDisciplinas();
+
+                    foreach (var disciplina in Listdisciplinas)
+                    {
+                        ListViewItem item = new ListViewItem(disciplina.Nome);
+                        item.SubItems.Add(disciplina.Sigla);
+                        item.SubItems.Add(disciplina.Professor.Nome);
+
+                        listviewDisciplinas.Items.Add(item);
+                    }
                 }
-                else resultLabel.Text = ("Por favor, insira a sigla da disciplina.");
+                else resultLabel.Text = ("Por favor, selecione um dia.");
+
             }
-            else resultLabel.Text = ("Por favor, insira o nome da disciplina.");
-
-
-            listviewDisciplinas.Items.Clear();
-            List<DisciplinaModel> Listdisciplinas = _disciplinaService.ReturnDisciplinas();
-
-            foreach (var disciplina in Listdisciplinas)
-            {
-                ListViewItem item = new ListViewItem(disciplina.Nome);
-                item.SubItems.Add(disciplina.Sigla);
-                item.SubItems.Add(disciplina.Professor.Nome);
-
-                listviewDisciplinas.Items.Add(item);
-            }
+            else resultLabel.Text = ("Por favor, selecione um professor.");
+            
         }
 
         private void selectProfessor_SelectedIndexChanged(object sender, EventArgs e)
@@ -125,6 +126,7 @@ namespace DiarioDeClasse.Views
 
         private void selectProfessor_DropDown(object sender, EventArgs e)
         {
+            selectProfessor.Items.Clear();
             List<ProfessorModel> professores = new List<ProfessorModel>();
             professores = _professorService.ReturnProfessores();
 
@@ -152,7 +154,7 @@ namespace DiarioDeClasse.Views
                     {
                         if (_disciplinaService.RemoveDisciplina(nomeToRemove))
                         {
-                            responseRemoveLabel.Text = ("Disciplina removido com sucesso!");
+                            responseRemoveLabel.Text = "Disciplina removida com sucesso!";
                         }
                         else throw new InvalidOperationException("ERRO REMOVE DISCIPLINA");
                     }
