@@ -36,6 +36,11 @@ namespace DiarioDeClasse.Views
 
             listviewTurmas.Visible = !listviewTurmas.Visible;
 
+            attListTurmas();
+        }
+
+        public void attListTurmas()
+        {
             if (listviewTurmas.Visible == true)
             {
                 listviewTurmas.Items.Clear();
@@ -144,23 +149,67 @@ namespace DiarioDeClasse.Views
 
         private void btnAddTurma_Click(object sender, EventArgs e)
         {
-            if (txtNameTurma != null)
+            resultLabel.Text = "";
+            string nomeTurma = txtNameTurma.Text, periodoTurma = txtPeriodoTurma.Text, turnoTurma = txtTurnoTurma.Text;
+            if (!string.IsNullOrEmpty(nomeTurma))
             {
-                if (txtPeriodoTurma != null)
+                if (!string.IsNullOrEmpty(periodoTurma))
                 {
-                    if (textTurnoTurma != null)
+                    if (!string.IsNullOrEmpty(turnoTurma))
                     {
-                        if(listviewSelectedDisciplinas.SelectedItems.Count > 0)
+                        if(listviewSelectedDisciplinas.Items.Count > 0)
                         {
+                            if(listviewSelectedAlunos.Items.Count > 0)
+                            {
+                                List<DisciplinaModel> listDisciplinas = _disciplinaservice.ReturnDisciplinas();
+                                List<DisciplinaModel> listSelectedDisciplinas = new List<DisciplinaModel>();
+                                foreach(var item in listviewSelectedDisciplinas.Items) 
+                                {
+                                    foreach (var disciplina in listDisciplinas)
+                                    {
+                                        if (disciplina.Nome == item.ToString())
+                                        {
+                                            listSelectedDisciplinas.Add(disciplina);
+                                        }
+                                    }
+                                }
 
+                                List<AlunoModel> listAlunos = _alunoservice.ReturnAlunos();
+                                List<AlunoModel> listSelectedAlunos = new List<AlunoModel>();
+                                foreach (var item in listviewSelectedAlunos.Items)
+                                {
+                                    foreach (var aluno in listSelectedAlunos)
+                                    {
+                                        if (aluno.Nome == item.ToString())
+                                        {
+                                            listSelectedAlunos.Add(aluno);
+                                        }
+                                    }
+                                }
+
+                                _turmaservice.Adicionar(nomeTurma, periodoTurma, turnoTurma, listDisciplinas, listAlunos);
+                                attListTurmas();
+
+
+                                txtNameTurma.Clear();
+                                txtPeriodoTurma.Clear();
+                                txtTurnoTurma.Clear();
+                                listviewSelectedAlunos.Items.Clear();
+                                listviewSelectedDisciplinas.Items.Clear();
+
+
+                                txtNameTurma.Focus();
+
+                                resultLabel.Text = ($"Turma {nomeTurma.ToUpper()} adicionada com sucesso!");
+                            }
                         }
-                        resultLabel.Text = "Por favor, selecione pelo menos uma disciplina";
+                        else resultLabel.Text = "Por favor, selecione ao menos uma disciplina";
                     }
-                    resultLabel.Text = "Por favor, insira turno da turma";
+                    else resultLabel.Text = "Por favor, insira turno da turma";
                 }
-                resultLabel.Text = "Por favor, insira periodo da turma";
+                else resultLabel.Text = "Por favor, insira periodo da turma";
             }
-            resultLabel.Text = "Por favor, insira nome da turma";
+            else resultLabel.Text = "Por favor, insira nome da turma";
         }
     }
 }

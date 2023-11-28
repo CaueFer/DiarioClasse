@@ -33,7 +33,7 @@
             labelNameTurma = new Label();
             txtNameTurma = new TextBox();
             labelTurnoTurma = new Label();
-            textTurnoTurma = new TextBox();
+            txtTurnoTurma = new TextBox();
             responseRemoveLabel = new Label();
             btnMostrarList = new Button();
             listviewTurmas = new ListView();
@@ -107,13 +107,13 @@
             labelTurnoTurma.TabIndex = 28;
             labelTurnoTurma.Text = "Turno: ";
             // 
-            // textTurnoTurma
+            // txtTurnoTurma
             // 
-            textTurnoTurma.Location = new Point(321, 59);
-            textTurnoTurma.MaxLength = 1;
-            textTurnoTurma.Name = "textTurnoTurma";
-            textTurnoTurma.Size = new Size(82, 23);
-            textTurnoTurma.TabIndex = 27;
+            txtTurnoTurma.Location = new Point(321, 59);
+            txtTurnoTurma.MaxLength = 1;
+            txtTurnoTurma.Name = "txtTurnoTurma";
+            txtTurnoTurma.Size = new Size(82, 23);
+            txtTurnoTurma.TabIndex = 27;
             // 
             // responseRemoveLabel
             // 
@@ -343,7 +343,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(610, 67);
+            label3.Location = new Point(610, 72);
             label3.Name = "label3";
             label3.Size = new Size(112, 20);
             label3.TabIndex = 44;
@@ -381,7 +381,7 @@
             Controls.Add(btnMostrarList);
             Controls.Add(listviewTurmas);
             Controls.Add(labelTurnoTurma);
-            Controls.Add(textTurnoTurma);
+            Controls.Add(txtTurnoTurma);
             Controls.Add(labelPeriodoTurma);
             Controls.Add(txtPeriodoTurma);
             Controls.Add(label1);
@@ -401,7 +401,7 @@
         private Label labelNameTurma;
         private TextBox txtNameTurma;
         private Label labelTurnoTurma;
-        private TextBox textTurnoTurma;
+        private TextBox txtTurnoTurma;
         private Label responseRemoveLabel;
         private Button btnMostrarList;
         private ListView listviewTurmas;
