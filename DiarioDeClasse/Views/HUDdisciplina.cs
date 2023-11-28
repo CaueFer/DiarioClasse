@@ -46,7 +46,9 @@ namespace DiarioDeClasse.Views
             string nomeDisciplina = txtNameDisciplina.Text;
             string siglaDisciplina = txtSiglaDisciplina.Text;
             DayOfWeek diaDisciplina = new DayOfWeek();
-            ProfessorModel professorDisciplina = (ProfessorModel)selectProfessor.SelectedItem;
+
+            List<ProfessorModel> listProfessores = _professorService.ReturnProfessores();
+            ProfessorModel professorDisciplina = listProfessores.Find(a => a.Nome == selectProfessor.SelectedItem.ToString());
 
 
             string diaSelecionado = selectDisciplinaDia.SelectedItem.ToString();
@@ -163,6 +165,29 @@ namespace DiarioDeClasse.Views
             }
             else
                 responseRemoveLabel.Text = ("Nao existe disciplina para remover");
+        }
+
+        private void btnMostrarList_Click(object sender, EventArgs e)
+        {
+            resultLabel.Text = "";
+            responseRemoveLabel.Text = "";
+
+            listviewDisciplinas.Visible = !listviewDisciplinas.Visible;
+
+            if (listviewDisciplinas.Visible == true)
+            {
+                listviewDisciplinas.Items.Clear();
+                List<DisciplinaModel> Listdisciplinas = _disciplinaService.ReturnDisciplinas();
+
+                foreach (var disciplina in Listdisciplinas)
+                {
+                    ListViewItem item = new ListViewItem(disciplina.Nome);
+                    item.SubItems.Add(disciplina.Professor.Nome);
+                    item.SubItems.Add(disciplina.Sigla);
+
+                    listviewDisciplinas.Items.Add(item);
+                }
+            }
         }
     }
 }

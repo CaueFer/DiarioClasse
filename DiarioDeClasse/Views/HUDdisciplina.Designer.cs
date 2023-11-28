@@ -92,6 +92,7 @@
             btnMostrarList.TabIndex = 11;
             btnMostrarList.Text = "MOSTRAR";
             btnMostrarList.UseVisualStyleBackColor = true;
+            btnMostrarList.Click += btnMostrarList_Click;
             // 
             // listviewDisciplinas
             // 
