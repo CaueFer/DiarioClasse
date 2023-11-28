@@ -34,6 +34,26 @@ namespace DiarioDeClasse.Services
         {
             return TurmaList;
         }
+
+        public void Adicionar(string nome, string periodo, string turno, List<DisciplinaModel> disciplina, List<AlunoModel> alunos)
+        {
+            TurmaModel novaTurma = new TurmaModel { Id = TurmaList.Count+1, Name = nome, Periodo = periodo, Turno = turno, Disciplinas = disciplina, Alunos = alunos};
+
+            TurmaList.Add(novaTurma);
+        }
+
+        public bool RemoveTurma(string nome)
+        {
+            TurmaModel novaTurma = TurmaList.Find(a => a.Name == nome);
+
+            if (novaTurma != null)
+            {
+                TurmaList.Remove(novaTurma);
+
+                return true;
+            }
+            else return false;
+        }
     }
 
 }

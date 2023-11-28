@@ -54,7 +54,7 @@
             listviewAlunosMain = new ListView();
             listviewAlunos = new ColumnHeader();
             listviewMatricula = new ColumnHeader();
-            listviewPresente = new ColumnHeader();
+            listviewFalta = new ColumnHeader();
             label2 = new Label();
             labelAllResponses = new Label();
             labelDateTime = new Label();
@@ -147,6 +147,7 @@
             btnAddTurma.TabIndex = 2;
             btnAddTurma.Text = "Turma";
             btnAddTurma.UseVisualStyleBackColor = false;
+            btnAddTurma.Click += btnAddTurma_Click;
             // 
             // panel3
             // 
@@ -291,14 +292,14 @@
             // listviewAlunosMain
             // 
             listviewAlunosMain.BorderStyle = BorderStyle.FixedSingle;
-            listviewAlunosMain.Columns.AddRange(new ColumnHeader[] { listviewAlunos, listviewMatricula, listviewPresente });
+            listviewAlunosMain.Columns.AddRange(new ColumnHeader[] { listviewAlunos, listviewMatricula, listviewFalta });
             listviewAlunosMain.FullRowSelect = true;
             listviewAlunosMain.GridLines = true;
             listviewAlunosMain.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listviewAlunosMain.Location = new Point(460, 125);
             listviewAlunosMain.Name = "listviewAlunosMain";
             listviewAlunosMain.Scrollable = false;
-            listviewAlunosMain.Size = new Size(283, 257);
+            listviewAlunosMain.Size = new Size(285, 257);
             listviewAlunosMain.TabIndex = 9;
             listviewAlunosMain.UseCompatibleStateImageBehavior = false;
             listviewAlunosMain.View = View.Details;
@@ -313,9 +314,9 @@
             listviewMatricula.Text = "Matricula";
             listviewMatricula.Width = 90;
             // 
-            // listviewPresente
+            // listviewFalta
             // 
-            listviewPresente.Text = "Falta";
+            listviewFalta.Text = "Falta";
             // 
             // label2
             // 
@@ -415,7 +416,7 @@
         private ListView listviewAlunosMain;
         private ColumnHeader listviewAlunos;
         private ColumnHeader listviewMatricula;
-        private ColumnHeader listviewPresente;
+        private ColumnHeader listviewFalta;
         private Label label2;
         private Label labelAllResponses;
         private Panel panel5;

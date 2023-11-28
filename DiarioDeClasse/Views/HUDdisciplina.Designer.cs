@@ -68,7 +68,7 @@
             // 
             btnRemoveProfessor.Location = new Point(40, 223);
             btnRemoveProfessor.Name = "btnRemoveProfessor";
-            btnRemoveProfessor.Size = new Size(288, 26);
+            btnRemoveProfessor.Size = new Size(269, 26);
             btnRemoveProfessor.TabIndex = 14;
             btnRemoveProfessor.Text = "Remover";
             btnRemoveProfessor.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
             // 
             btnAddDisciplina.Location = new Point(40, 188);
             btnAddDisciplina.Name = "btnAddDisciplina";
-            btnAddDisciplina.Size = new Size(287, 29);
+            btnAddDisciplina.Size = new Size(269, 29);
             btnAddDisciplina.TabIndex = 9;
             btnAddDisciplina.Text = "Adicionar";
             btnAddDisciplina.UseVisualStyleBackColor = true;
@@ -206,7 +206,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(705, 423);
+            ClientSize = new Size(705, 306);
             Controls.Add(labelSelectDia);
             Controls.Add(selectDisciplinaDia);
             Controls.Add(labelSiglaDisciplina);

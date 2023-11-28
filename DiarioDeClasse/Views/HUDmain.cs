@@ -220,5 +220,11 @@ namespace DiarioDeClasse.Views
             HUDprofessor hudProfessor = new HUDprofessor(_professorService);
             hudProfessor.ShowDialog();
         }
+
+        private void btnAddTurma_Click(object sender, EventArgs e)
+        {
+            HUDturma hudTurma = new HUDturma(_turmaService, _alunoService, _disciplinaService);
+            hudTurma.ShowDialog();
+        }
     }
 }
