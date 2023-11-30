@@ -13,8 +13,9 @@ namespace DiarioDeClasse
             DisciplinaService DisciplinaService = new DisciplinaService();
             ProfessorService ProfessorService = new ProfessorService();
             TurmaService TurmaService = new TurmaService();
+            FaltaService faltaService = new FaltaService();
 
-            Application.Run(new HUDlogin(TurmaService, DisciplinaService, ProfessorService, alunoService));
+            Application.Run(new HUDlogin(TurmaService, DisciplinaService, ProfessorService, alunoService, faltaService));
         }
     }
 }

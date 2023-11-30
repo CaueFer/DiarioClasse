@@ -9,10 +9,22 @@ namespace DiarioDeClasse.Services
 {
     public class FaltaService
     {
+        AlunoService alunoService = new AlunoService();
+        DisciplinaService disciplinaService = new DisciplinaService();
+
         List<FaltaModel> listFaltas;
+        List<AlunoModel> ListAlunos;
+        List<DisciplinaModel> listaDisciplinas;
         public FaltaService() 
-        {   
-            listFaltas = new List<FaltaModel>();
+        {
+            ListAlunos = alunoService.ReturnAlunos();
+            listaDisciplinas = disciplinaService.ReturnDisciplinas();
+
+            listFaltas = new List<FaltaModel>()
+            {
+                new FaltaModel { aluno = ListAlunos[0], disciplina = listaDisciplinas[0], dia = DayOfWeek.Monday},
+                new FaltaModel { aluno = ListAlunos[0], disciplina = listaDisciplinas[0], dia = DayOfWeek.Monday}
+            };
         }
 
         public List<FaltaModel> ReturnFaltas()

@@ -25,13 +25,15 @@ namespace DiarioDeClasse.Views
         public DisciplinaService _disciplinaService;
         public ProfessorService _professorService;
         public AlunoService _alunoService;
+        public FaltaService _faltaService;
 
-        public HUDmain(TurmaService turmaService, DisciplinaService disciplinaService, ProfessorService professorService, AlunoService alunoService)
+        public HUDmain(TurmaService turmaService, DisciplinaService disciplinaService, ProfessorService professorService, AlunoService alunoService, FaltaService faltaservice)
         {
             _turmaService = turmaService;
             _disciplinaService = disciplinaService;
             _professorService = professorService;
             _alunoService = alunoService;
+            _faltaService = faltaservice;
 
             InitializeComponent();
             attDateTime();
@@ -172,9 +174,12 @@ namespace DiarioDeClasse.Views
 
             List<AlunoModel> listAlunos = new List<AlunoModel>();
             List<TurmaModel> listTurmas = new List<TurmaModel>();
-            listTurmas = _turmaService.ReturnTurmas();
+            List<FaltaModel> listFaltas = new List<FaltaModel>();
 
+            listTurmas = _turmaService.ReturnTurmas();
+            listFaltas = _faltaService.ReturnFaltas();
             listAlunos.Clear();
+
             foreach (var turma in listTurmas)
             {
                 if (selectedTurma == ($"{turma.Name} - " + $"Fase: {turma.Periodo} - " + $"Turno: {turma.Turno}"))
@@ -191,6 +196,25 @@ namespace DiarioDeClasse.Views
                 }
             }
 
+
+            //ATUALIZA QUANTIDADE DE FALTAS
+            foreach (var aluno in listAlunos) aluno.QntFaltas = 0;
+
+            if (listFaltas.Count > 0)
+            {
+                foreach (var falta in listFaltas)
+                {
+                    foreach(var aluno in listAlunos)
+                    {
+                        if(aluno.Nome == falta.aluno.Nome && selectedDisciplinaText == falta.disciplina.Nome)
+                        {
+                            aluno.QntFaltas++;
+                        }
+                    }
+                }
+            }
+
+            // ATT LISTVIEW ALUNOS
             if (selectDisciplina.SelectedItem != null)
             {
                 if (listAlunos.Count > 0)
@@ -199,6 +223,7 @@ namespace DiarioDeClasse.Views
                     {
                         ListViewItem item = new ListViewItem(aluno.Nome);
                         item.SubItems.Add(aluno.Matricula.ToString());
+                        item.SubItems.Add(aluno.QntFaltas.ToString());
 
                         listviewAlunosMain.Items.Add(item);
                     }

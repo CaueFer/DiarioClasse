@@ -84,5 +84,6 @@ namespace DiarioDeClasse.Services
             throw new InvalidOperationException("MAX CAP DE MATRICULA");
         }
 
+
     }
 }

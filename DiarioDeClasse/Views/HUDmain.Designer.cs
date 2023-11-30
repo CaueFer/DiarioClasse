@@ -55,7 +55,6 @@
             listviewAlunos = new ColumnHeader();
             listviewMatricula = new ColumnHeader();
             listviewFalta = new ColumnHeader();
-            label2 = new Label();
             labelAllResponses = new Label();
             labelDateTime = new Label();
             labelSelectedProfessor = new Label();
@@ -316,16 +315,7 @@
             // 
             // listviewFalta
             // 
-            listviewFalta.Text = "Falta";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(460, 394);
-            label2.Name = "label2";
-            label2.Size = new Size(178, 15);
-            label2.TabIndex = 10;
-            label2.Text = "Marcar checkbox se aluno faltar!";
+            listviewFalta.Text = "Faltas";
             // 
             // labelAllResponses
             // 
@@ -365,7 +355,6 @@
             ClientSize = new Size(800, 450);
             Controls.Add(sideBar);
             Controls.Add(labelAllResponses);
-            Controls.Add(label2);
             Controls.Add(listviewAlunosMain);
             Controls.Add(labelListviewAlunos);
             Controls.Add(selectTurma);
@@ -417,7 +406,6 @@
         private ColumnHeader listviewAlunos;
         private ColumnHeader listviewMatricula;
         private ColumnHeader listviewFalta;
-        private Label label2;
         private Label labelAllResponses;
         private Panel panel5;
         private Button btnAddDisciplina;

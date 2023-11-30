@@ -10,6 +10,7 @@ namespace DiarioDeClasse.Models
     {
         public string Nome { get; set; }
         public int Matricula { get; set; }
+        public int QntFaltas { get; set; }
 
         public static implicit operator List<object>(AlunoModel v)
         {

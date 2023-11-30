@@ -18,19 +18,21 @@ namespace DiarioDeClasse.Views
         public DisciplinaService _disciplinaService;
         public ProfessorService _professorService;
         public AlunoService _alunoService;
-        public HUDlogin(TurmaService turmaService, DisciplinaService disciplinaService, ProfessorService professorService, AlunoService alunoService)
+        public FaltaService _faltaService;
+        public HUDlogin(TurmaService turmaService, DisciplinaService disciplinaService, ProfessorService professorService, AlunoService alunoService, FaltaService faltaService)
         {
             _turmaService = turmaService;
             _disciplinaService = disciplinaService;
             _professorService = professorService;
             _alunoService = alunoService;
+            _faltaService = faltaService;
 
             InitializeComponent();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            HUDmain hudmain = new HUDmain(_turmaService, _disciplinaService, _professorService, _alunoService);
+            HUDmain hudmain = new HUDmain(_turmaService, _disciplinaService, _professorService, _alunoService, _faltaService);
             hudmain.FormClosed += HUDmain_FormClosed;
             this.Hide();
             hudmain.Show();
