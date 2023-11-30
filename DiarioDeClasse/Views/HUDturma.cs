@@ -190,7 +190,6 @@ namespace DiarioDeClasse.Views
                                 _turmaservice.Adicionar(nomeTurma, periodoTurma, turnoTurma, listDisciplinas, listAlunos);
                                 attListTurmas();
 
-
                                 txtNameTurma.Clear();
                                 txtPeriodoTurma.Clear();
                                 txtTurnoTurma.Clear();
