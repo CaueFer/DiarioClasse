@@ -204,9 +204,9 @@ namespace DiarioDeClasse.Views
             {
                 foreach (var falta in listFaltas)
                 {
-                    foreach(var aluno in listAlunos)
+                    foreach (var aluno in listAlunos)
                     {
-                        if(aluno.Nome == falta.aluno.Nome && selectedDisciplinaText == falta.disciplina.Nome)
+                        if (aluno.Nome == falta.aluno.Nome && selectedDisciplinaText == falta.disciplina.Nome)
                         {
                             aluno.QntFaltas++;
                         }
@@ -250,6 +250,12 @@ namespace DiarioDeClasse.Views
         {
             HUDturma hudTurma = new HUDturma(_turmaService, _alunoService, _disciplinaService);
             hudTurma.ShowDialog();
+        }
+
+        private void btnAddFaltas_Click(object sender, EventArgs e)
+        {
+            HUDfaltas hudfaltas = new HUDfaltas(_turmaService, _disciplinaService, _professorService, _alunoService, _faltaService);
+            hudfaltas.ShowDialog();
         }
     }
 }

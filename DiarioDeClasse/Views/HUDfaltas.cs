@@ -43,18 +43,7 @@ namespace DiarioDeClasse.Views
 
         //MOSTRAR TURMAS ===========================================================================
         public string selectedTurma;
-        private void selectTurma_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (selectTurmaFaltas.SelectedItem != null)
-            {
-                selectedTurma = selectTurmaFaltas.SelectedItem.ToString();
-
-                selectDisciplinaFaltas.Text = "";
-                attListviewAlunos();
-            }
-        }
-
-        private void selectTurma_DropDown(object sender, EventArgs e)
+        private void selectTurmaFaltas_DropDown(object sender, EventArgs e)
         {
             labelResultSelectDisciplina.Text = "";
             labelAllResponses.Text = "";
@@ -70,11 +59,22 @@ namespace DiarioDeClasse.Views
                 selectTurmaFaltas.Items.Add(stringToSelect);
             }
         }
+        private void selectTurmaFaltas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (selectTurmaFaltas.SelectedItem != null)
+            {
+                selectedTurma = selectTurmaFaltas.SelectedItem.ToString();
+
+                selectDisciplinaFaltas.Text = "";
+                attListviewAlunos();
+            }
+        }
+
 
         // MOSTRA AS DISCIPLINAS ===========================================================================
 
         string selectedDisciplinaText;
-        private void selectDisciplina_DropDown(object sender, EventArgs e)
+        private void selectDisciplinaFaltas_DropDown(object sender, EventArgs e)
         {
             labelAllResponses.Text = "";
             selectDisciplinaFaltas.Items.Clear();
@@ -102,7 +102,7 @@ namespace DiarioDeClasse.Views
             else labelResultSelectDisciplina.Text = (labelResultSelectDisciplina.Text == "Nenhuma turma selecionada!") ? "" : "Nenhuma turma selecionada!";
 
         }
-        public void selectDisciplina_SelectedIndexChanged(object sender, EventArgs e)
+        public void selectDisciplinaFaltas_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (selectDisciplinaFaltas.SelectedItem != null)
             {
@@ -178,7 +178,6 @@ namespace DiarioDeClasse.Views
                 else labelAllResponses.Text = "Lista de alunos vazia.";
             }
             else labelResultSelectDisciplina.Text = "Selecione disciplina.";
-
         }
     }
 }

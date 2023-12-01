@@ -43,6 +43,8 @@
             btnAddAluno = new Button();
             panel5 = new Panel();
             btnAddDisciplina = new Button();
+            panel6 = new Panel();
+            btnAddFaltas = new Button();
             btnMenuOpen = new PictureBox();
             sidebarTimer = new System.Windows.Forms.Timer(components);
             labelSelectTurma = new Label();
@@ -65,6 +67,7 @@
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
+            panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMenuOpen).BeginInit();
             SuspendLayout();
             // 
@@ -88,6 +91,7 @@
             sideBar.Controls.Add(panel3);
             sideBar.Controls.Add(panel4);
             sideBar.Controls.Add(panel5);
+            sideBar.Controls.Add(panel6);
             sideBar.Dock = DockStyle.Left;
             sideBar.Location = new Point(0, 0);
             sideBar.MaximumSize = new Size(163, 450);
@@ -203,13 +207,34 @@
             btnAddDisciplina.BackColor = SystemColors.ActiveCaptionText;
             btnAddDisciplina.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddDisciplina.ForeColor = Color.White;
-            btnAddDisciplina.Location = new Point(-20, -9);
+            btnAddDisciplina.Location = new Point(-25, -6);
             btnAddDisciplina.Name = "btnAddDisciplina";
             btnAddDisciplina.Size = new Size(207, 61);
             btnAddDisciplina.TabIndex = 13;
             btnAddDisciplina.Text = "Disciplinas";
             btnAddDisciplina.UseVisualStyleBackColor = false;
             btnAddDisciplina.Click += btnAddDisciplina_Click;
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(btnAddFaltas);
+            panel6.Location = new Point(3, 248);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(160, 56);
+            panel6.TabIndex = 6;
+            // 
+            // btnAddFaltas
+            // 
+            btnAddFaltas.BackColor = SystemColors.ActiveCaptionText;
+            btnAddFaltas.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddFaltas.ForeColor = Color.White;
+            btnAddFaltas.Location = new Point(-22, -10);
+            btnAddFaltas.Name = "btnAddFaltas";
+            btnAddFaltas.Size = new Size(207, 72);
+            btnAddFaltas.TabIndex = 14;
+            btnAddFaltas.Text = "Gerenciar Faltas";
+            btnAddFaltas.UseVisualStyleBackColor = false;
+            btnAddFaltas.Click += btnAddFaltas_Click;
             // 
             // btnMenuOpen
             // 
@@ -368,6 +393,7 @@
             Controls.Add(labelSelectedProfessor);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "HUDmain";
+            StartPosition = FormStartPosition.CenterScreen;
             sideBar.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -376,6 +402,7 @@
             panel3.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel5.ResumeLayout(false);
+            panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)btnMenuOpen).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -411,5 +438,7 @@
         private Button btnAddDisciplina;
         private Label labelDateTime;
         private Label labelSelectedProfessor;
+        private Button btnAddFaltas;
+        private Panel panel6;
     }
 }

@@ -60,6 +60,8 @@
             selectTurmaFaltas.Name = "selectTurmaFaltas";
             selectTurmaFaltas.Size = new Size(251, 23);
             selectTurmaFaltas.TabIndex = 15;
+            selectTurmaFaltas.DropDown += selectTurmaFaltas_DropDown;
+            selectTurmaFaltas.SelectedIndexChanged += selectTurmaFaltas_SelectedIndexChanged;
             // 
             // labelSelectTurma
             // 
@@ -88,6 +90,8 @@
             selectDisciplinaFaltas.Name = "selectDisciplinaFaltas";
             selectDisciplinaFaltas.Size = new Size(251, 23);
             selectDisciplinaFaltas.TabIndex = 17;
+            selectDisciplinaFaltas.DropDown += selectDisciplinaFaltas_DropDown;
+            selectDisciplinaFaltas.SelectedIndexChanged += selectDisciplinaFaltas_SelectedIndexChanged;
             // 
             // labelSelectDisciplina
             // 
@@ -120,7 +124,7 @@
             listviewAlunosMainFaltas.MultiSelect = false;
             listviewAlunosMainFaltas.Name = "listviewAlunosMainFaltas";
             listviewAlunosMainFaltas.Scrollable = false;
-            listviewAlunosMainFaltas.Size = new Size(244, 257);
+            listviewAlunosMainFaltas.Size = new Size(240, 257);
             listviewAlunosMainFaltas.TabIndex = 22;
             listviewAlunosMainFaltas.UseCompatibleStateImageBehavior = false;
             listviewAlunosMainFaltas.View = View.Details;
