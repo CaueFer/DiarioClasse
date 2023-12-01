@@ -158,6 +158,7 @@
             btnAddFalta.TabIndex = 23;
             btnAddFalta.Text = "Adicionar falta";
             btnAddFalta.UseVisualStyleBackColor = true;
+            btnAddFalta.Click += btnAddFalta_Click;
             // 
             // HUDfaltas
             // 
