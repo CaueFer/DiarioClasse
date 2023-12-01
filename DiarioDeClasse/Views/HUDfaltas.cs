@@ -181,7 +181,7 @@ namespace DiarioDeClasse.Views
         }
 
         private void btnAddFalta_Click(object sender, EventArgs e)
-        {
+        {   
             if (selectTurmaFaltas.SelectedItem != null)
             {
                 if (selectDisciplinaFaltas.SelectedItem != null)
@@ -193,20 +193,23 @@ namespace DiarioDeClasse.Views
 
                         List<AlunoModel> listAlunos = _alunoService.ReturnAlunos();
                         if (listAlunos.Count > 0)
-                        {
-                            AlunoModel aluno = listAlunos.Find(a => a.Nome == listviewAlunosMainFaltas.SelectedItems[0].Text);
+                        {   
+                            if(listviewAlunosMainFaltas.SelectedItems.Count > 0)
+                            {
+                                AlunoModel aluno = listAlunos.Find(a => a.Nome == listviewAlunosMainFaltas.SelectedItems[0].Text);
 
+                                _faltaService.Adicionar(disciplina, aluno, dayOfWeek);
 
-                            _faltaService.Adicionar(disciplina, aluno, dayOfWeek);
-
-                            attListviewAlunos();
-                            labelAllResponses.Text = "Falta adiciona com sucesso.";
+                                attListviewAlunos();
+                                MessageBox.Show(this, "Falta adiciona com sucesso.");
+                            }
+                            else labelAllResponses.Text = "Selecione aluno.";
                         }
                         else labelAllResponses.Text = "Lista aluno vazia.";
                     }
                     else labelAllResponses.Text = "Lista disciplina vazia.";
                 }
-                else labelAllResponses.Text = "Selecione disciplina.";
+                else labelResultSelectDisciplina.Text = "Selecione disciplina.";
             }
             else labelResultSelectDisciplina.Text = "Selecione turma.";
         }
