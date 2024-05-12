@@ -20,6 +20,8 @@ namespace DiarioDeClasse.Views
         public AlunoService _alunoService;
         public FaltaService _faltaService;
 
+        public DayOfWeek dayOfWeek;
+
         public HUDfaltas(TurmaService turmaService, DisciplinaService disciplinaService, ProfessorService professorService, AlunoService alunoService, FaltaService faltaservice)
         {
             _turmaService = turmaService;
@@ -35,7 +37,7 @@ namespace DiarioDeClasse.Views
         private void attDateTime()
         {
             DateTime now = DateTime.Now;
-            DayOfWeek dayOfWeek = now.DayOfWeek;
+            dayOfWeek = now.DayOfWeek;
 
             labelDateTime.Text = "Dia Atual: " + dayOfWeek.ToString();
 
@@ -78,6 +80,7 @@ namespace DiarioDeClasse.Views
         {
             labelAllResponses.Text = "";
             selectDisciplinaFaltas.Items.Clear();
+            selectDisciplinaFaltas.SelectedIndex = -1;
 
             if (selectedTurma != null)
             {
@@ -115,24 +118,21 @@ namespace DiarioDeClasse.Views
         //listviewAlunosMainFaltas
         public void attListviewAlunos()
         {
-
+            labelAllResponses.Text = "";
+            labelResultSelectDisciplina.Text = "";
             listviewAlunosMainFaltas.Items.Clear();
 
 
             List<AlunoModel> listAlunos = new List<AlunoModel>();
-            List<TurmaModel> listTurmas = new List<TurmaModel>();
-            List<FaltaModel> listFaltas = new List<FaltaModel>();
-
-            listTurmas = _turmaService.ReturnTurmas();
-            listFaltas = _faltaService.ReturnFaltas();
+            List<TurmaModel> listTurmas = _turmaService.ReturnTurmas();
+            List<FaltaModel> listFaltas = _faltaService.ReturnFaltas();
             listAlunos.Clear();
 
             foreach (var turma in listTurmas)
             {
                 if (selectedTurma == ($"{turma.Name} - " + $"Fase: {turma.Periodo} - " + $"Turno: {turma.Turno}"))
                 {
-                    List<DisciplinaModel> listDisciplinas = new List<DisciplinaModel>();
-                    listDisciplinas = turma.Disciplinas;
+                    List<DisciplinaModel> listDisciplinas = turma.Disciplinas;
                     foreach (var disciplina in listDisciplinas)
                     {
                         if (selectedDisciplinaText == disciplina.Nome)
@@ -178,6 +178,40 @@ namespace DiarioDeClasse.Views
                 else labelAllResponses.Text = "Lista de alunos vazia.";
             }
             else labelResultSelectDisciplina.Text = "Selecione disciplina.";
+        }
+
+        private void btnAddFalta_Click(object sender, EventArgs e)
+        {   
+            if (selectTurmaFaltas.SelectedItem != null)
+            {
+                if (selectDisciplinaFaltas.SelectedItem != null)
+                {
+                    List<DisciplinaModel> listDisciplina = _disciplinaService.ReturnDisciplinas();
+                    if (listDisciplina.Count > 0)
+                    {
+                        DisciplinaModel disciplina = listDisciplina.Find(a => a.Nome == selectDisciplinaFaltas.Text);
+
+                        List<AlunoModel> listAlunos = _alunoService.ReturnAlunos();
+                        if (listAlunos.Count > 0)
+                        {   
+                            if(listviewAlunosMainFaltas.SelectedItems.Count > 0)
+                            {
+                                AlunoModel aluno = listAlunos.Find(a => a.Nome == listviewAlunosMainFaltas.SelectedItems[0].Text);
+
+                                _faltaService.Adicionar(disciplina, aluno, dayOfWeek);
+
+                                attListviewAlunos();
+                                MessageBox.Show(this, "Falta adiciona com sucesso.");
+                            }
+                            else labelAllResponses.Text = "Selecione aluno.";
+                        }
+                        else labelAllResponses.Text = "Lista aluno vazia.";
+                    }
+                    else labelAllResponses.Text = "Lista disciplina vazia.";
+                }
+                else labelResultSelectDisciplina.Text = "Selecione disciplina.";
+            }
+            else labelResultSelectDisciplina.Text = "Selecione turma.";
         }
     }
 }

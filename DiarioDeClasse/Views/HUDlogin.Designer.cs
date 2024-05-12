@@ -91,7 +91,7 @@
             Controls.Add(labelUserPassword);
             Controls.Add(txtUserName);
             Controls.Add(labelUserName);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "HUDlogin";
             StartPosition = FormStartPosition.CenterScreen;
             ResumeLayout(false);
